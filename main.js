@@ -63,7 +63,9 @@ async function start(){
 
       if (parts[0] === 'accounts' && parts[2] === 'balance' && parts.length === 3 && method === 'GET'){
         const account = await Account.findById(parts[1]);
-        if (!account) { res.writeHead(404); res.end(JSON.stringify({ error: 'Account not found' })); return; }
+        if (!account) { res.writeHead(404); res.end(JSON.stringify({ error: 'Account not found' }));
+         return; 
+        }
         res.end(JSON.stringify({ balance: account.balance }));
         return;
       }
@@ -98,12 +100,13 @@ async function start(){
       }
 
       if (parts[0] === 'accounts' && parts[2] === 'transactions' && parts.length === 3 && method === 'GET') {
-        const accountId = parts[1];
-        const account = await Account.findById(accountId);
-        if (!account) { res.writeHead(404); res.end(JSON.stringify({ error: 'Account not found' })); return; }
-
-        const txs = await Transaction.find({ account: accountId }).sort({ date: -1 });
-        res.end(JSON.stringify(txs));
+        const account = await Account.findById(parts[1]);
+        if (!account) { res.writeHead(404); res.end(JSON.stringify({ error: 'Account not found' }));
+         return; 
+        }
+        const transactions = await Transaction.find({
+        _id: { $in: account.transactions }});
+        res.end(JSON.stringify({ transactions }));
         return;
       }
 

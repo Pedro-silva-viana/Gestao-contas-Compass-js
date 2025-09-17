@@ -51,3 +51,26 @@ npm run dev
 
 #### Execute a aplicação em produção
 node .main.js
+
+# 📌 Comandos principais da API
+
+### 1️⃣ Criar um cliente
+```bash
+POST http://localhost:PORT/customers 
+```
+### 2️⃣ Criar uma conta para um cliente
+```bash
+POST http://localhost:PORT/customers/_id/accounts
+```
+### 3️⃣ Consultar saldo de uma conta
+```bash
+GET http://localhost:PORT/accounts/_id/balance
+```
+### 4️⃣ Realizar uma transação
+```bash
+POST http://localhost:PORT/accounts/_id/transactions
+```
+### 5️⃣ Listar transações de uma conta
+```bash
+GET http://localhost:PORT/accounts/_id/transactions
+```

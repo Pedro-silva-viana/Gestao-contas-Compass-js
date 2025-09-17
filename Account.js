@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const accountSchema = new mongoose.Schema({
-  _id: String,
   type: { type: String, enum: ['checking', 'savings'] },
   branch: String,
   number: String,
