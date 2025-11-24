@@ -10,3 +10,23 @@ exports.createCustomer = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 };
+
+exports.getCustomer = async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.customerId);
+    if (!customer) return res.status(404).json({ error: 'Custumer not found' });
+      res.json(customer);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
+exports.getCustomerbyCnpj = async (req, res) => {
+  try {
+    const customer = await Customer.findOne({ cnpj: req.params.cnpj });
+    if (!customer) return res.status(404).json({ error: 'Custumer not found' });
+      res.json(customer);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};

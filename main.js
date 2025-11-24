@@ -24,7 +24,7 @@ async function start() {
     console.log('MongoDB connected.');
 
     const db = mongoose.connection.db;
-    await db.collection('customers').createIndex({ cpf: 1 }, { unique: true });
+    await db.collection('customers').createIndex({ cnpj: 1 }, { unique: true });
     await db.collection('customers').createIndex({ email: 1 }, { unique: true });
 
     app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));

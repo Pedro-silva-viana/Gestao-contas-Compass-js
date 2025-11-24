@@ -53,3 +53,14 @@ exports.putOpen = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 };
+
+exports.getAccount = async (req, res) => {
+  try {
+    const account = await Account.findById(req.params.accountId);
+    if (!account) return res.status(404).json({ error: 'Account not found' });
+    res.json(account);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+
+};

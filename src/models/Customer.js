@@ -15,12 +15,12 @@ const customerSchema = new mongoose.Schema({
     message: 'Name is mandatory'
   }
   },
-  cpf: {
+  cnpj: {
     type: String,
     required: true,
     unique: true,
     trim: true,
-    match: [/^\d{11}$/, 'CPF must have 11 digits (numbers only)']
+    match: [/^\d{14}$/, 'CNPJ must have 14 digits (numbers only)']
   },
   email: {
     type: String,

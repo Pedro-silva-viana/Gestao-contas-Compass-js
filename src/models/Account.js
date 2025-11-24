@@ -5,15 +5,14 @@ const accountSchema = new mongoose.Schema({
   type: { type: String, enum: ['checking', 'savings'] },
   _id: String,
   branch: String,
-  number: {type: String, unique: true, 
+  number: {type: String, unique: true},
+  open_f: {type: Boolean, default: false},
+  customerId: String,
+  balance: { type: Number, default: 0, 
     validate: {
       validator: Number.isInteger,
       message: 'The balance must be a whole number (in cents).'
-    }
-  },
-  open_f: {type: Boolean, default: false},
-  customerId: String,
-  balance: { type: Number, default: 0 },
+    }},
   transactions: [{ type: String, ref: 'Transaction' }]
 });
 
